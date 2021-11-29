@@ -5,8 +5,6 @@ import java.io.*;
 import io.github.cdimascio.dotenv.*;
 import java.util.Scanner;
 
-import javax.lang.model.type.NullType;
-
 public class TicketRequester
 {   
     final int numPerPage = 25;
