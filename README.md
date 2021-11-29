@@ -15,7 +15,8 @@ This is a CLI ticket viewer that connects to the Zendesk API and gets all the ti
 `$ git clone https://github.com/keshavba/zendesk-coding-challenge.git`
 
 2. Navigate to the directory with the Main.java file in command prompt or other command line application
-3. To compile the program, use the following command (if not using Windows, replace all instances of ";" with ":") -
+3. Make sure to add your subdomain and OAuth 2.0 token to the .env file in the "assets" folder
+4. To compile the program, use the following command (if not using Windows, replace all instances of ";" with ":") -
 
 `$ javac -cp ".;./lib/dotenv.jar;./lib/json.jar;./lib/junit.jar" Main.java`
 
