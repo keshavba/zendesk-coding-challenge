@@ -5,6 +5,7 @@ This is a CLI ticket viewer that connects to the Zendesk API and gets all the ti
 ## Dependencies
 
 • JDK 16.0.2 or later
+
 • All other dependencies are included in the lib folder
 
 ## Instructions to Run the Program (Windows)
