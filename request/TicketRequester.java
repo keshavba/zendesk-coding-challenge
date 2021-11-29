@@ -5,6 +5,8 @@ import java.io.*;
 import io.github.cdimascio.dotenv.*;
 import java.util.Scanner;
 
+import javax.lang.model.type.NullType;
+
 public class TicketRequester
 {   
     final int numPerPage = 25;
@@ -151,10 +153,11 @@ public class TicketRequester
     public JSONObject connectAPI(String command)
     {
         JSONObject json = null;
+        Process process = null;
 
         try
         {
-            Process process = Runtime.getRuntime().exec(command);
+            process = Runtime.getRuntime().exec(command);
 
             InputStream inputStream = process.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -163,7 +166,24 @@ public class TicketRequester
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            if(process != null)
+            {
+                process.destroy();
+                if(process.exitValue() != 0)
+                {
+                    switch(process.exitValue())
+                    {
+                        case 401: System.out.printf("\nERROR: Couldn't authenticate you!");
+                                  break;
+                        case 404: System.out.printf("\nERROR: Couldn't find ticket(s)!");
+                                  break;
+                        case 400: System.out.printf("\nERROR: Invalid ticket number!");
+                                  break;
+                        default:  System.out.printf("\nERROR: Couldn't obtain ticket(s)!");
+                                  break;
+                    }
+                }
+            }
         }
 
         return json;
